@@ -1,8 +1,7 @@
-# HANNIBA-L — Healthcare Companion Robot Simulation
+# HANNIBA-L — Autonomous Mobile Robot Simulation
 
-HANNIBA-L is a healthcare companion robot project focused on developing a simulated mobile robot that can move through a virtual home environment.
-
-The project combines ROS 2, Gazebo simulation, robot movement control, sensor data, mapping, and navigation-related components. The long-term goal is to develop a companion robot that can interact with people and support personalized assistance.
+HANNIBA-L is a mobile robotics simulation project focused on operating a robot in a virtual home environment. The current implementation explores ROS 2 communication, movement control, simulated sensors, odometry, SLAM mapping, and navigation-related components. Developing a personalized healthcare co
+mpanion robot is a longer-term goal.
 
 ## Project Goals
 
