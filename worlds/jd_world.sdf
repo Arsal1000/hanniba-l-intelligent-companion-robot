@@ -1,0 +1,343 @@
+<?xml version="1.0"?>
+
+<sdf version="1.10">
+
+  <world name="jd_world">
+
+    <!-- Simulation physics -->
+    <physics name="1ms" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+    <!-- Gazebo systems -->
+    <plugin
+      filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics"/>
+
+    <plugin
+      filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster"/>
+
+    <plugin
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    
+    <plugin
+      filename="gz-sim-imu-system"
+      name="gz::sim::systems::Imu">
+    </plugin>
+    <!-- Scene -->
+    <scene>
+      <ambient>0.6 0.6 0.6 1</ambient>
+      <background>0.8 0.8 0.8 1</background>
+      <shadows>true</shadows>
+    </scene>
+
+
+    <!-- ===================================================== -->
+    <!-- GROUND                                                -->
+    <!-- ===================================================== -->
+
+    <model name="ground">
+      <static>true</static>
+
+      <link name="ground_link">
+
+        <collision name="ground_collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>20 20</size>
+            </plane>
+          </geometry>
+        </collision>
+
+        <visual name="ground_visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>20 20</size>
+            </plane>
+          </geometry>
+
+          <material>
+            <ambient>0.65 0.65 0.65 1</ambient>
+            <diffuse>0.75 0.75 0.75 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- VIRTUAL HOME                                          -->
+    <!-- ===================================================== -->
+
+    <model name="home_walls">
+      <static>true</static>
+
+      <link name="walls">
+
+        <!-- North wall -->
+        <collision name="north_wall_collision">
+          <pose>0 4 1.25 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>10 0.15 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="north_wall_visual">
+          <pose>0 4 1.25 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>10 0.15 2.5</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.75 0.75 0.75 1</ambient>
+            <diffuse>0.9 0.9 0.9 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+
+
+        <!-- South wall -->
+        <collision name="south_wall_collision">
+          <pose>0 -4 1.25 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>10 0.15 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="south_wall_visual">
+          <pose>0 -4 1.25 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>10 0.15 2.5</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.75 0.75 0.75 1</ambient>
+            <diffuse>0.9 0.9 0.9 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+
+
+        <!-- West wall -->
+        <collision name="west_wall_collision">
+          <pose>-5 0 1.25 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.15 8 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="west_wall_visual">
+          <pose>-5 0 1.25 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.15 8 2.5</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.75 0.75 0.75 1</ambient>
+            <diffuse>0.9 0.9 0.9 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+
+
+        <!-- East wall -->
+        <collision name="east_wall_collision">
+          <pose>5 0 1.25 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.15 8 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="east_wall_visual">
+          <pose>5 0 1.25 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.15 8 2.5</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.75 0.75 0.75 1</ambient>
+            <diffuse>0.9 0.9 0.9 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+
+
+        <!-- Central dividing wall - upper section -->
+        <collision name="middle_wall_upper_collision">
+          <pose>0 2.6 1.25 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.15 2.8 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="middle_wall_upper_visual">
+          <pose>0 2.6 1.25 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.15 2.8 2.5</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.75 0.75 0.75 1</ambient>
+            <diffuse>0.9 0.9 0.9 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+
+
+        <!-- Central dividing wall - lower section -->
+        <collision name="middle_wall_lower_collision">
+          <pose>0 -2.6 1.25 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.15 2.8 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="middle_wall_lower_visual">
+          <pose>0 -2.6 1.25 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.15 2.8 2.5</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.75 0.75 0.75 1</ambient>
+            <diffuse>0.9 0.9 0.9 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- SIMPLE FURNITURE                                      -->
+    <!-- ===================================================== -->
+
+    <!-- Living-room table -->
+    <model name="table">
+      <static>true</static>
+
+      <link name="table_link">
+
+        <collision name="table_collision">
+          <pose>2 -2 0.45 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.5 1 0.9</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="table_visual">
+          <pose>2 -2 0.45 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.5 1 0.9</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.35 0.18 0.08 1</ambient>
+            <diffuse>0.55 0.28 0.12 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+
+
+    <!-- Bedroom bed -->
+    <model name="bed">
+      <static>true</static>
+
+      <link name="bed_link">
+
+        <collision name="bed_collision">
+          <pose>-2.5 3.0 0.35 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>3 1.8 0.7</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="bed_visual">
+          <pose>-2.5 3.0 0.35 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>3 1.8 0.7</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.15 0.25 0.55 1</ambient>
+            <diffuse>0.25 0.45 0.85 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- SUN                                                    -->
+    <!-- ===================================================== -->
+
+    <light name="sun" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>1 1 1 1</diffuse>
+      <specular>0.3 0.3 0.3 1</specular>
+      <direction>-0.5 0.2 -1</direction>
+    </light>
+
+
+    <!-- ===================================================== -->
+    <!-- HANNIBA-L                                             -->
+    <!-- ===================================================== -->
+
+    <include>
+      <uri>model://jd_robot</uri>
+      <name>JD</name>
+      <pose>-3 -2 0.15 0 0 0</pose>
+    </include>
+
+  </world>
+
+</sdf>

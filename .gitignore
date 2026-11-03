@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*.bak
+*.backup
+*.before_*
+*.pre_*
+build/
+install/
+log/
+*.swp
+.DS_Store
